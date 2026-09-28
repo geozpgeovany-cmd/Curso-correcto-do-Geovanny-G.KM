@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Curso Correto do Geovanny G.K.</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #111827, #2563eb);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: white;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        button,
+        .btn {
+            border: none;
+            padding: 14px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .primary {
+            background: white;
+            color: #2563eb;
+        }
+
+        .secondary {
+            background: #111827;
+            color: white;
+        }
+
+        .section {
+            width: 90%;
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #2563eb;
+        }
+
+        form {
+            display: grid;
+            gap: 15px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+        form button {
+            background: #2563eb;
+            color: white;
+        }
+
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .course {
+            padding: 22px;
+            border-radius: 12px;
+            background: #f4f6f8;
+            border-left: 5px solid #2563eb;
+        }
+
+        .course h3 {
+            margin-bottom: 10px;
+            color: #2563eb;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            padding: 12px;
+            border-radius: 7px;
+            background: #e8f5e9;
+            color: #166534;
+            text-align: center;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 30px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero">
+        <div class="hero-content">
+
+            <div class="logo">G.K</div>
+
+            <h1>Curso Correto do Geovanny G.K.</h1>
+
+            <p>
+                Aprende, desenvolve as tuas habilidades e prepara-te
+                para o futuro através dos nossos cursos técnicos.
+            </p>
+
+            <div class="buttons">
+                <a href="#cadastro" class="btn primary">Criar cadastro</a>
+                <a href="#entrar" class="btn secondary">Entrar</a>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="section" id="cadastro">
+
+        <h2>Cadastro do Aluno</h2>
+
+        {% if erro %}
+            <div class="message error">
+                {{ erro }}
+            </div>
+        {% endif %}
+
+        {% if sucesso %}
+            <div class="message">
+                {{ sucesso }}
+            </div>
+        {% endif %}
+
+        <form action="/cadastro" method="POST">
+
+            <input
+                type="text"
+                name="nome"
+                placeholder="Primeiro e último nome"
+                required
+            >
+
+            <input
+                type="number"
+                name="idade"
+                placeholder="Idade"
+                min="1"
+                max="100"
+                required
+            >
+
+            <input
+                type="date"
+                name="nascimento"
+                required
+            >
+
+            <select name="genero" required>
+                <option value="">Selecione o género</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+                <option value="Outro">Outro</option>
+            </select>
+
+            <button type="submit">
+                Cadastrar
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <section class="section" id="entrar">
+
+        <h2>Entrar no Curso</h2>
+
+        <form action="/entrar" method="POST">
+
+            <input
+                type="text"
+                name="nome"
+                placeholder="Digite o seu nome"
+                required
+            >
+
+            <button type="submit">
+                Entrar
+            </button>
+
+        </form>
+
+    </section>
+
+
+    {% if mostrar_cursos %}
+
+    <section class="section">
+
+        <h2>
+            {% if aluno %}
+                Bem-vindo, {{ aluno }}!
+            {% else %}
+                Cursos Técnicos
+            {% endif %}
+        </h2>
+
+        <div class="courses">
+
+            <div class="course">
+                <h3>Informática</h3>
+                <p>Fundamentos de informática e tecnologia.</p>
+            </div>
+
+            <div class="course">
+                <h3>Programação</h3>
+                <p>Introdução à programação e desenvolvimento.</p>
+            </div>
+
+            <div class="course">
+                <h3>Construção Civil</h3>
+                <p>Conhecimentos fundamentais da construção civil.</p>
+            </div>
+
+            <div class="course">
+                <h3>Desenho Técnico</h3>
+                <p>Desenho, leitura e interpretação de projetos.</p>
+            </div>
+
+            <div class="course">
+                <h3>Eletricidade</h3>
+                <p>Instalações e fundamentos de eletricidade.</p>
+            </div>
+
+            <div class="course">
+                <h3>Eletrónica</h3>
+                <p>Componentes, circuitos e sistemas eletrónicos.</p>
+            </div>
+
+            <div class="course">
+                <h3>Contabilidade</h3>
+                <p>Princípios básicos de contabilidade.</p>
+            </div>
+
+            <div class="course">
+                <h3>Gestão</h3>
+                <p>Administração, organização e gestão.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+    <footer>
+        <p>© 2026 Curso Correto do Geovanny G.K.</p>
+    </footer>
+
+</body>
+  </html>
